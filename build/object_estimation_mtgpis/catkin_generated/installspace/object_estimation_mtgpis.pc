@@ -1,0 +1,8 @@
+prefix=/home/isc-lab/miyamoto/miyamoto_ws/install
+
+Name: object_estimation_mtgpis
+Description: Description of object_estimation_mtgpis
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/isc-lab/miyamoto/miyamoto_ws/install/lib 
+Requires: 

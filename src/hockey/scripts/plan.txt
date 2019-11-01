@@ -1,0 +1,5 @@
+roscore
+roslaunch ur_modern_driver ur5_bringup_joint_limited.launch robot_ip:=10.42.0.175
+
+cd /miya_ws/src/hockey/scripts
+python hockeydemo.py 

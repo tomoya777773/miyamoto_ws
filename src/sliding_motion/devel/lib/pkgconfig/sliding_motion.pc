@@ -1,0 +1,8 @@
+prefix=/home/isc-lab/miyamoto/miyamoto_ws/src/sliding_motion/devel
+
+Name: sliding_motion
+Description: Description of sliding_motion
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/isc-lab/miyamoto/miyamoto_ws/src/sliding_motion/devel/lib 
+Requires: 

@@ -1,0 +1,2 @@
+hockey:iai_kinect2/iai_kinect2:iai_kinect2/kinect2_bridge:iai_kinect2/kinect2_calibration:iai_kinect2/kinect2_registration:iai_kinect2/kinect2_viewer:object_estimation_mtgpis:optoforce-ros-pusblisher-master:sliding_motion
+-DCATKIN_DEVEL_PREFIX=/home/isc-lab/miyamoto/miyamoto_ws/devel -DCMAKE_INSTALL_PREFIX=/home/isc-lab/miyamoto/miyamoto_ws/install -G Unix Makefiles

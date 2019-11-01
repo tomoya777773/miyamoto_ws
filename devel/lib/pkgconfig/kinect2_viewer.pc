@@ -1,0 +1,8 @@
+prefix=/home/isc-lab/miyamoto/miyamoto_ws/devel
+
+Name: kinect2_viewer
+Description: Description of kinect2_viewer
+Version: 0.0.1
+Cflags: 
+Libs: -L/home/isc-lab/miyamoto/miyamoto_ws/devel/lib 
+Requires: 

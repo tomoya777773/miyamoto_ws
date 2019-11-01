@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "//home/isc-lab/frey_ws/devel/include",
+                "/home/isc-lab/frey_ws/devel/include",
+                "/home/isc-lab/catkin_ws/devel/include",
+                "/opt/ros/kinetic/include",
+                "/home/isc-lab/miyamoto/miyamoto_ws/src/hockey/include",
+                "/home/isc-lab/miyamoto/miyamoto_ws/src/iai_kinect2/kinect2_bridge/include",
+                "/home/isc-lab/miyamoto/miyamoto_ws/src/iai_kinect2/kinect2_calibration/include",
+                "/home/isc-lab/miyamoto/miyamoto_ws/src/iai_kinect2/kinect2_registration/include",
+                "/home/isc-lab/miyamoto/miyamoto_ws/src/optoforce-ros-pusblisher-master/include",
+                "/home/isc-lab/miyamoto/miyamoto_ws/src/sliding_motion/include",
+                "/usr/include"
+            ],
+            "name": "Linux",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}
