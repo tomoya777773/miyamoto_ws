@@ -5,5 +5,6 @@
         "/home/isc-lab/frey_ws/devel/lib/python2.7/dist-packages",
         "/home/isc-lab/catkin_ws/devel/lib/python2.7/dist-packages",
         "/opt/ros/kinetic/lib/python2.7/dist-packages"
-    ]
+    ],
+    "python.pythonPath": "/usr/bin/python"
 }

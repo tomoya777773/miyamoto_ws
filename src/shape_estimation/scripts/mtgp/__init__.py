@@ -1,3 +1,0 @@
-from .mtgpis import MultiTaskGaussianProcessImplicitSurfaces
-from .mtgp import MultiTaskGaussianProcess
-from .gpis import GaussianProcessImplicitSurfaces

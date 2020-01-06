@@ -292,7 +292,8 @@ if __name__=="__main__":
     print "force:", ur.force
 
     joint_home  = [-2.1336739699, -1.3189786116, -1.8041823546, -1.5889738242, 1.5709401369, 0.2687601149]
-    joint_start = [-2.3925276438, -1.3441069762, -2.0282152335, -1.3387392203, 1.5715278387, 0.0112262229] # line
+    # joint_start = [-2.3925276438, -1.3441069762, -2.0282152335, -1.3387392203, 1.5715278387, 0.0112262229] # line
+    joint_start = [-2.286190335, -1.3497789542, -1.9421065489, -1.4196661154, 1.5712277889, 0.1171049774] # 似ていない
 
 
     # move to home
@@ -340,7 +341,7 @@ if __name__=="__main__":
         ax.scatter(X_body[:,0], X_body[:,1], X_body[:,2], s=200, color="navajowhite", alpha=1)
         # ax.scatter(X1[:,0], X1[:,1], X1[:,2], s=100, color="green")
         plot_path(position_list)
-        plt.savefig('../data/body/mtgpis/movie/step{}.png'.format(movie_num))
+        # plt.savefig('../data/body/mtgpis/movie/step{}.png'.format(movie_num))
         movie_num += 1
         plt.draw()
         plt.pause(0.001)
@@ -368,7 +369,8 @@ if __name__=="__main__":
 
         if i == 0:
             # task_kernel_params = torch.Tensor([[1, 10e-4], [10e-4, 1]])
-            task_kernel_params = torch.tensor([[-0.2881, -0.3729], [0.27, -1.354]])
+            # task_kernel_params = torch.tensor([[-0.2881, -0.3729], [0.27, -1.354]])
+            task_kernel_params = torch.tensor([[-0.2458, -1.8297], [0.27, 0.1005]])
 
         else:
             task_kernel_params = gp_model.task_kernel_params
@@ -397,7 +399,7 @@ if __name__=="__main__":
         plot_estimated_surface(estimated_surface, var)
         plot_path(position_list, i)
 
-        plt.savefig('../data/body/mtgpis/movie/step{}.png'.format(movie_num))
+        # plt.savefig('../data/body/mtgpis/movie/step{}.png'.format(movie_num))
         movie_num += 1
         plt.draw()
         plt.pause(0.0001)
@@ -465,8 +467,8 @@ if __name__=="__main__":
     print("var_list:", var_list)
     print("simirality:", simirality_list)
 
-    np.save('../data/body/mtgpis/value/var', var_list)
-    np.save('../data/body/mtgpis/value/simirality', simirality_list)
+    # np.save('../data/body/mtgpis/value/var', var_list)
+    # np.save('../data/body/mtgpis/value/simirality', simirality_list)
 
     ur.socket.send("movel({0}, a=0.2, v=0.2)".format(joint_home) + "\n")
     rospy.sleep(3)

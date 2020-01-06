@@ -14,7 +14,7 @@ class MultiTaskGaussianProcessImplicitSurfaces:
         self.m       = m
         self.c       = c
         self.z_limit = z_limit
-        self.sigma   = torch.tensor(np.log(sigma))
+        # self.sigma   = torch.tensor(np.log(sigma))
         self.sigma   = sigma
         self.kernel  = kernel
 
@@ -94,7 +94,7 @@ class MultiTaskGaussianProcessImplicitSurfaces:
         self.compute_grad(False)
 
         self.task_kernel = self.task_params_to_psd()
-        print("task kernel:", self.task_kernel)
+        # print("task kernel:", self.task_kernel)
         # print(self.task_kernel_params)
 
         L  = torch.cholesky(self.task_kernel[self.T, self.T.T] * self.KX + torch.eye(self.X.size()[0]) * torch.exp(self.sigma))
@@ -115,11 +115,42 @@ class MultiTaskGaussianProcessImplicitSurfaces:
         diff_mean  = kk.T.mm(self.invK).mm(self.Y_m)
         diff_cov   = -2 * (k.T.mm(self.invK).mm(kk)).T
 
+        # if x[0][2] < self.z_limit:
+        #     print "-----penalty------"
+        #     diff_penalty = torch.Tensor([0, 0, -2 * self.c * (x[0][2] - self.z_limit)])[:, None]
+        # else:
+        #     diff_penalty = torch.zeros(3)[:, None]
+
+
+
+        diff_penalty = torch.zeros(3)[:, None]
+
+        # print "y - x :", x[0][1] - x[0][0]
+        
         if x[0][2] < self.z_limit:
             print "-----penalty------"
-            diff_penalty = torch.Tensor([0, 0, -2 * self.c * (x[0][2] - self.z_limit)])[:, None]
-        else:
-            diff_penalty = torch.zeros(3)[:, None]
+            diff_penalty += torch.Tensor([0, 0, -2 * self.c * (x[0][2] - self.z_limit)])[:, None]
+        
+
+        ############################# arm ###########################################
+        # if (-0.27 > x[0][1] - x[0][0]):
+        #     diff_penalty += torch.Tensor([-self.c * 0.01, self.c * 0.01, 0])[:, None]
+        
+        # if (x[0][1] - x[0][0] > 0.17):
+        #     diff_penalty += torch.Tensor([self.c * 0.01, -self.c * 0.01, 0])[:, None]
+        ############################# arm ###########################################
+
+        ############################# body ###########################################
+        if (x[0][1] - x[0][0] > -0.05):
+            diff_penalty += torch.Tensor([self.c * 0.01, -self.c * 0.01, 0])[:, None]
+
+        if (-0.265 > x[0][1] - x[0][0]):
+            diff_penalty += torch.Tensor([-self.c * 0.01, self.c * 0.01, 0])[:, None]
+        ############################# body ###########################################
+
+        
+
+        # print diff_penalty
 
         diff_object = diff_cov + diff_penalty
 

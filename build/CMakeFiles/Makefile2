@@ -1022,6 +1022,24 @@ clean: optoforce-ros-pusblisher-master/CMakeFiles/optoforce_sensor_node.dir/clea
 .PHONY : clean
 
 #=============================================================================
+# Directory level rules for directory shape_estimation
+
+# Convenience name for "all" pass in the directory.
+shape_estimation/all:
+
+.PHONY : shape_estimation/all
+
+# Convenience name for "clean" pass in the directory.
+shape_estimation/clean:
+
+.PHONY : shape_estimation/clean
+
+# Convenience name for "preinstall" pass in the directory.
+shape_estimation/preinstall:
+
+.PHONY : shape_estimation/preinstall
+
+#=============================================================================
 # Directory level rules for directory sliding_motion
 
 # Convenience name for "all" pass in the directory.

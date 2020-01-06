@@ -1,0 +1,8 @@
+prefix=/home/isc-lab/miyamoto/miyamoto_ws/devel
+
+Name: shape_estimation
+Description: Description of shape_estimation
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/isc-lab/miyamoto/miyamoto_ws/devel/lib 
+Requires: 

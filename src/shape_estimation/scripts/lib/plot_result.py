@@ -1,95 +1,78 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
+plt.style.use("ggplot")
 
+name = "arm/low"
+var_list        = np.load("../data/{}/mtgpis/value/var.npy".format(name))
+simirality_list = np.load("../data/{}/mtgpis/value/simirality.npy".format(name))
+surf_list       = np.load("../data/{}/mtgpis/value/rmse.npy".format(name))
 
-# a = np.load("../data/gpis_error_200.npy")
-# b = np.load("../data/mtgpis_error_200_10.npy")
-# c = np.load("../data/mtgpis_error_200_22.npy")
-# d = np.load("../data/mtgpis_error_200_25.npy")
-# e = np.load("../data/mtgpis_error_200_30.npy")
-# f = np.load("../data/mtgpis_error_200_50.npy")
-# g = np.load("../data/mtgpis_error_200_cos.npy")
+var_list_gp     = np.load("../data/{}/gpis/value/var.npy".format(name))
+surf_list_gp    = np.load("../data/{}/gpis/value/rmse.npy".format(name)) 
+# print len(var_list)
+# surf_list_gp[0] = 0.061432
+# print surf_list_gp
+# np.save('../data/arm/low/gpis/value/rmse', surf_list_gp[:151])
+# np.save('../data/arm/low/gpis/value/var', var_list_gp[:151])
+# print(surf_list_gp.min())
+# np.save('../data/body/low/gpis/value/rmse', surf_list_gp)
+# print(var_list)
+# print(simirality_list)
+# print(surf_list)
 
-# x = np.arange(len(b))
+step = len(var_list)
+x = np.arange(len(var_list)) * 0.01
+simirality_t12 = []
+for simirality in simirality_list:
+    simirality_t12.append(simirality[1][0] / simirality[1][1])
+    # print(simirality)
+    # print(simirality[1][0], simirality[1][0])
+fig = plt.figure(figsize=(12.0, 3.0))
 
-# plt.plot(x, a, linewidth=4, color="red")
-# plt.plot(x, b, linewidth=4, color="blue")
-# plt.plot(x, c, linewidth=4, color="yellow")
-# plt.plot(x, d, linewidth=4, color="pink")
-# plt.plot(x, e, linewidth=4, color="black")
-# plt.plot(x, f, linewidth=4, color="navy")
-# plt.plot(x, g, linewidth=4, color="orange")
+ax1 = fig.add_subplot(1, 3, 1)
+ax1.plot(x, var_list, c="blue")
+ax1.plot(x, var_list_gp, c="red")
+ax1.set_xlabel("Travel length [m]")
+ax1.set_ylabel("Uncertainty measure")
 
-# plt.show()
+ax2 = fig.add_subplot(1, 3, 2)
+ax2.plot(x, surf_list, c="blue")
+ax2.plot(x, surf_list_gp, c="red")
+# ax2.set_ylim([0, 0.1])
+ax2.set_xlabel("Travel length [m]")
+ax2.set_ylabel("Surface error")
 
-# a = np.load("../data/gpis_var_ave_200.npy")
-# b = np.load("../data/mtgpis_var_ave_200_10.npy")
-# c = np.load("../data/mtgpis_var_ave_200_22.npy")
-# d = np.load("../data/mtgpis_var_ave_200_25.npy")
-# e = np.load("../data/mtgpis_var_ave_200_30.npy")
-# f = np.load("../data/mtgpis_var_ave_200_50.npy")
-# g = np.load("../data/mtgpis_var_ave_200_cos.npy")
+ax3 = fig.add_subplot(1, 3, 3)
+ax3.plot(x, simirality_t12, c="blue")
+ax3.set_ylim([0, 1.1])
+ax3.set_xlabel("Travel length [m]")
+ax3.set_ylabel("Simirality measure")
 
-# x = np.arange(len(b))
-
-# plt.plot(x, a, linewidth=4, color="red")
-# plt.plot(x, b, linewidth=4, color="blue")
-# plt.plot(x, c, linewidth=4, color="yellow")
-# plt.plot(x, d, linewidth=4, color="pink")
-# plt.plot(x, e, linewidth=4, color="black")
-# plt.plot(x, f, linewidth=4, color="navy")
-# plt.plot(x, g, linewidth=4, color="orange")
-
-# plt.show()
-
-# a = np.load("../data/gpis_error_200.npy")
-# b = np.load("../data/mtgpis_error_200_21.npy")
-# c = np.load("../data/mtgpis_error_200_23.npy")
-# d = np.load("../data/mtgpis_error_200_25.npy")
-# e = np.load("../data/mtgpis_error_200_30.npy")
-# f = np.load("../data/mtgpis_error_200_50.npy")
-# g = np.load("../data/mtgpis_error_200_cos.npy")
-
-# x = np.arange(len(b))
-# print a
-# plt.plot(x, a, linewidth=4, color="red")
-# plt.plot(x, b, linewidth=4, color="blue")
-# plt.plot(x, c, linewidth=4, color="yellow")
-# plt.plot(x, d, linewidth=4, color="pink")
-# plt.plot(x, e, linewidth=4, color="black")
-# plt.plot(x, f, linewidth=4, color="navy")
-# plt.plot(x, g, linewidth=4, color="orange")
-
-# plt.show()
-
-# a = np.load("../data/gpis_var_ave_200.npy")
-# b = np.load("../data/mtgpis_var_ave_200_21.npy")
-# c = np.load("../data/mtgpis_var_ave_200_23.npy")
-# d = np.load("../data/mtgpis_var_ave_200_25.npy")
-# e = np.load("../data/mtgpis_var_ave_200_30.npy")
-# f = np.load("../data/mtgpis_var_ave_200_50.npy")
-# g = np.load("../data/mtgpis_var_ave_200_cos.npy")
-
-# x = np.arange(len(b))
-
-# plt.plot(x, a, linewidth=4, color="red")
-# plt.plot(x, b, linewidth=4, color="blue")
-# plt.plot(x, c, linewidth=4, color="yellow")
-# plt.plot(x, d, linewidth=4, color="pink")
-# plt.plot(x, e, linewidth=4, color="black")
-# plt.plot(x, f, linewidth=4, color="navy")
-# plt.plot(x, g, linewidth=4, color="orange")
-
-# plt.show()
-
-a = np.load("../data/gpis2/var_400.npy")
-b = np.load("../data/mtgpis/var_400.npy")
-# c = np.load("../data/gpis2/var_200.npy")
-
-x = np.arange(len(a))
-x2 = np.arange(len(b))
-
-plt.plot(x, a, linewidth=4, color="red")
-plt.plot(x2, b, linewidth=4, color="blue")
-# plt.plot(x2, c, linewidth=4, color="black")
+plt.tight_layout()
 plt.show()
+
+# var_list        = np.load("../data/low_low/mtgpis/value/var.npy")
+# simirality_list = np.load("../data/low_low/mtgpis/value/simirality.npy")
+# surf_list       = np.load("../data/low_low/mtgpis/value/surf.npy")
+# # print(var_list)
+# # print(simirality_list)
+# # print(surf_list)
+
+# step = len(var_list)
+
+# simirality_t12 = []
+# for simirality in simirality_list:
+#     simirality_t12.append(simirality[1][0] / simirality[1][1])
+
+# fig = plt.figure(figsize=(18.0, 6.0))
+
+# ax1 = fig.add_subplot(1, 3, 1)
+# ax1.plot(range(step), var_list)
+
+# ax2 = fig.add_subplot(1, 3, 2)
+# ax2.plot(range(step), surf_list)
+
+# ax3 = fig.add_subplot(1, 3, 3)
+# ax3.plot(range(step), simirality_t12)
+# plt.show()

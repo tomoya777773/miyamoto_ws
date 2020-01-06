@@ -140,11 +140,23 @@ class MultiTaskGaussianProcessImplicitSurfaces:
         diff_mean  = kk.T.mm(self.invK).mm(self.Y - self.m)
         diff_cov   = -2 * (k.T.mm(self.invK).mm(kk)).T
 
+        diff_penalty = torch.zeros(3)[:, None]
+
+        print "y - x :", x[0][1] - x[0][0]
+        
         if x[0][2] < self.z_limit:
             print "-----penalty------"
-            diff_penalty = torch.Tensor([0, 0, -2 * self.c * (x[0][2] - self.z_limit)])[:, None]
-        else:
+            diff_penalty += torch.Tensor([0, 0, -2 * self.c * (x[0][2] - self.z_limit)])[:, None]
+
             diff_penalty = torch.zeros(3)[:, None]
+
+        
+        if (-0.27 > x[0][1] - x[0][0]):
+            diff_penalty += torch.Tensor([-self.c * 0.1, self.c * 0.1, 0])[:, None]
+        
+        if (x[0][1] - x[0][0] > 0.18):
+            diff_penalty += torch.Tensor([self.c * 0.1, -self.c * 0.1, 0])[:, None]
+            
 
         diff_object = diff_cov + diff_penalty
 
