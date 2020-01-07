@@ -3,20 +3,21 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 plt.style.use("ggplot")
 
-name = "arm/low"
+name = "arm/high"
 var_list        = np.load("../data/{}/mtgpis/value/var.npy".format(name))
 simirality_list = np.load("../data/{}/mtgpis/value/simirality.npy".format(name))
 surf_list       = np.load("../data/{}/mtgpis/value/rmse.npy".format(name))
 
-var_list_gp     = np.load("../data/{}/gpis/value/var.npy".format(name))
+var_list_gp     = np.load("../data/{}/gpis/value/var.npy".format(name)) 
 surf_list_gp    = np.load("../data/{}/gpis/value/rmse.npy".format(name)) 
-# print len(var_list)
 # surf_list_gp[0] = 0.061432
 # print surf_list_gp
 # np.save('../data/arm/low/gpis/value/rmse', surf_list_gp[:151])
 # np.save('../data/arm/low/gpis/value/var', var_list_gp[:151])
 # print(surf_list_gp.min())
-# np.save('../data/body/low/gpis/value/rmse', surf_list_gp)
+# np.save('../data/arm/low/gpis/value/rmse', surf_list_gp)
+# np.save('../data/arm/low/gpis/value/var', var_list_gp)
+
 # print(var_list)
 # print(simirality_list)
 # print(surf_list)
